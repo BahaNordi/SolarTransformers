@@ -52,7 +52,7 @@ def simple_accuracy(preds, labels):
 
 def save_model(args, model):
     model_to_save = model.module if hasattr(model, 'module') else model
-    model_checkpoint = os.path.join(args.output_dir, "%s_checkpoint.bin" % args.name)
+    model_checkpoint = os.path.join(args.output_dir, "%s_checkpoint.pth" % args.name)
     torch.save(model_to_save.state_dict(), model_checkpoint)
     logger.info("Saved model checkpoint to [DIR: %s]", args.output_dir)
 
@@ -271,7 +271,7 @@ def main():
                         help="Total batch size for training.")
     parser.add_argument("--eval_batch_size", default=32, type=int,
                         help="Total batch size for eval.")
-    parser.add_argument("--eval_every", default=100, type=int,
+    parser.add_argument("--eval_every", default=200, type=int,
                         help="Run prediction on validation set every so many steps."
                              "Will always run one evaluation at the end of training.")
 
@@ -310,6 +310,7 @@ def main():
 
     args = parser.parse_args(["--name", "solar", "--dataset", "InfraredSolarModules", "--model_type", "ViT-B_16",
                               "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/ViT-B_16.npz",
+                              "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
                               "--fp16_opt_level", "O2"])
 
     # Setup CUDA, GPU & distributed training

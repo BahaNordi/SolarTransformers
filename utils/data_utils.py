@@ -67,6 +67,7 @@ def get_loader(args):
                               pin_memory=True)
     test_loader = DataLoader(testset,
                              sampler=test_sampler,
+                             shuffle=False,
                              batch_size=args.eval_batch_size,
                              num_workers=4,
                              pin_memory=True) if testset is not None else None
