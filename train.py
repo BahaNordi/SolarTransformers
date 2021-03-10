@@ -272,7 +272,7 @@ def main():
                         help="Total batch size for training.")
     parser.add_argument("--eval_batch_size", default=32, type=int,
                         help="Total batch size for eval.")
-    parser.add_argument("--eval_every", default=200, type=int,
+    parser.add_argument("--eval_every", default=219, type=int,
                         help="Run prediction on validation set every so many steps."
                              "Will always run one evaluation at the end of training.")
 
