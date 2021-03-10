@@ -5,6 +5,8 @@ import logging
 import argparse
 import os
 import random
+
+import fire
 import numpy as np
 
 from datetime import timedelta
@@ -341,4 +343,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    fire.Fire(main())

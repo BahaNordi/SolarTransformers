@@ -7,8 +7,11 @@ from torch.utils.data import DataLoader, RandomSampler, DistributedSampler, Sequ
 from torchvision.datasets import ImageFolder
 
 logger = logging.getLogger(__name__)
-train_dir = '/home/baha/codes/solar_data/InfraredSolarModules/train'
-test_dir = '/home/baha/codes/solar_data/InfraredSolarModules/val'
+# train_dir = '/home/baha/codes/solar_data/InfraredSolarModules/train'
+# test_dir = '/home/baha/codes/solar_data/InfraredSolarModules/val'
+
+train_dir = '/content/gdrive/MyDrive/Colab_Notebooks/jua_solar/solar_data/InfraredSolarModules/train'
+test_dir = '/content/gdrive/MyDrive/Colab_Notebooks/jua_solar/solar_data/InfraredSolarModules/val'
 
 
 def get_loader(args):
