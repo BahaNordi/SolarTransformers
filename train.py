@@ -219,8 +219,9 @@ def train(args, model):
                     torch.nn.utils.clip_grad_norm_(amp.master_params(optimizer), args.max_grad_norm)
                 else:
                     torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
-                scheduler.step()
+
                 optimizer.step()
+                scheduler.step()
                 optimizer.zero_grad()
                 global_step += 1
 
