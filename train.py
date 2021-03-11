@@ -309,8 +309,8 @@ def main():
     #                           "--pretrained_dir", "/home/baha/Downloads/ViT-B_16.npz",
     #                           "--fp16_opt_level", "O2"])
 
-    args = parser.parse_args(["--name", "solar", "--dataset", "InfraredSolarModules", "--model_type", "ViT-B_16",
-                              "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/ViT-B_16.npz",
+    args = parser.parse_args(["--name", "solar", "--dataset", "InfraredSolarModules", "--model_type", "R50-ViT-B_16",
+                              "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
                               "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
                               "--fp16_opt_level", "O2"])
 
