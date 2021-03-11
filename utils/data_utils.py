@@ -19,6 +19,9 @@ def get_loader(args):
         torch.distributed.barrier()
 
     transform_train = transforms.Compose([
+        transforms.RandomHorizontalFlip(p=0.5),
+        transforms.RandomVerticalFlip(p=0.5),
+        transforms.RandomRotation(180),
         transforms.RandomResizedCrop((args.img_size, args.img_size), scale=(0.05, 1.0)),
         transforms.RandomApply(torch.nn.ModuleList([transforms.ColorJitter(brightness=0.05, contrast=0.05,
                                                                            saturation=0.1, hue=0.05)]), p=0.3),
