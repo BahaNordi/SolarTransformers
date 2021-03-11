@@ -20,10 +20,10 @@ def get_loader(args):
 
     transform_train = transforms.Compose([
 
-        transforms.RandomResizedCrop((args.img_size, args.img_size), scale=(0.05, 1.0)),
-        # transforms.RandomApply(torch.nn.ModuleList([transforms.ColorJitter(brightness=0.05, contrast=0.05,
-        #                                                                    saturation=0.1, hue=0.05)]), p=0.3),
-        # transforms.RandomApply(torch.nn.ModuleList([transforms.GaussianBlur([3], sigma=(0.1, 2.0))]), p=0.3),
+        transforms.RandomResizedCrop((args.img_size, args.img_size), scale=(0.70, 1.0)),
+        transforms.RandomApply(torch.nn.ModuleList([transforms.ColorJitter(brightness=0.05, contrast=0.05,
+                                                                           saturation=0.1, hue=0.05)]), p=0.3),
+        transforms.RandomApply(torch.nn.ModuleList([transforms.GaussianBlur([3], sigma=(0.1, 2.0))]), p=0.3),
 
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
