@@ -124,7 +124,7 @@ def valid(args, model, writer, test_loader, global_step):
             eval_losses.update(eval_loss.item())
 
             preds = torch.argmax(logits, dim=-1)
-            all_logits = torch.cat([all_logits, logits], dim=0)
+            all_logits = torch.cat([all_logits, logits], dim=0).detach().cpu().numpy()
 
         if len(all_preds) == 0:
             all_preds.append(preds.detach().cpu().numpy())
