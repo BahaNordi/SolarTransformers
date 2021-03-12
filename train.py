@@ -142,7 +142,7 @@ def valid(args, model, writer, test_loader, global_step):
     accuracy = simple_accuracy(all_preds, all_label)
 
     _, predicted = torch.max(all_logits.data, 1)
-    c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
+    c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze().cpu()
     multiclass_correct = list(0. for i in range(100))
     multiclass_total = list(0. for i in range(100))
     all_labels = test_loader.dataset.targets
