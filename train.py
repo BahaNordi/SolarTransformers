@@ -124,7 +124,7 @@ def valid(args, model, writer, test_loader, global_step):
             eval_losses.update(eval_loss.item())
 
             preds = torch.argmax(logits, dim=-1)
-            all_logits = torch.cat([all_logits, logits], dim=0).detach().cpu().numpy()
+            all_logits = torch.cat([all_logits, logits], dim=0)
 
         if len(all_preds) == 0:
             all_preds.append(preds.detach().cpu().numpy())
@@ -141,7 +141,7 @@ def valid(args, model, writer, test_loader, global_step):
     all_preds, all_label = all_preds[0], all_label[0]
     accuracy = simple_accuracy(all_preds, all_label)
 
-    _, predicted = torch.max(all_logits.data, 1)
+    _, predicted = torch.max(all_logits.data.detach().cpu(), 1)
     c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
     multiclass_correct = list(0. for i in range(100))
     multiclass_total = list(0. for i in range(100))
