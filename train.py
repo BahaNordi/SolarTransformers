@@ -111,9 +111,9 @@ def valid(args, model, writer, test_loader, global_step):
                           disable=args.local_rank not in [-1, 0])
     loss_fct = torch.nn.CrossEntropyLoss()
 
-    use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda else "cpu")
-    all_logits = torch.tensor([], device=device)
+    # use_cuda = torch.cuda.is_available()
+    # device = torch.device("cuda:0" if use_cuda else "cpu")
+    all_logits = torch.tensor([], device=args.device)
 
     for step, batch in enumerate(epoch_iterator):
         batch = tuple(t.to(args.device) for t in batch)
@@ -142,7 +142,7 @@ def valid(args, model, writer, test_loader, global_step):
     accuracy = simple_accuracy(all_preds, all_label)
 
     _, predicted = torch.max(all_logits.data, 1)
-    c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze().cpu()
+    c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
     multiclass_correct = list(0. for i in range(100))
     multiclass_total = list(0. for i in range(100))
     all_labels = test_loader.dataset.targets
@@ -290,7 +290,7 @@ def main():
                         help="Total batch size for training.")
     parser.add_argument("--eval_batch_size", default=64, type=int,
                         help="Total batch size for eval.")
-    parser.add_argument("--eval_every", default=120, type=int,
+    parser.add_argument("--eval_every", default=5, type=int,
                         help="Run prediction on validation set every so many steps."
                              "Will always run one evaluation at the end of training.")
 
