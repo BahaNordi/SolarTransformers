@@ -143,8 +143,8 @@ def valid(args, model, writer, test_loader, global_step):
 
     _, predicted = torch.max(all_logits.data.detach().cpu(), 1)
     c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
-    multiclass_correct = list(0. for i in range(100))
-    multiclass_total = list(0. for i in range(100))
+    multiclass_correct = list(0. for i in range(len(test_loader.dataset.classes)))
+    multiclass_total = list(0. for i in range(len(test_loader.dataset.classes)))
     all_labels = test_loader.dataset.targets
     for i in range(len(all_labels)):
         label = all_labels[i]
