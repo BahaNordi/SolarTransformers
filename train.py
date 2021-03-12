@@ -268,9 +268,9 @@ def main():
 
     parser.add_argument("--img_size", default=224, type=int,
                         help="Resolution size")
-    parser.add_argument("--train_batch_size", default=32, type=int,
+    parser.add_argument("--train_batch_size", default=128, type=int,
                         help="Total batch size for training.")
-    parser.add_argument("--eval_batch_size", default=32, type=int,
+    parser.add_argument("--eval_batch_size", default=64, type=int,
                         help="Total batch size for eval.")
     parser.add_argument("--eval_every", default=120, type=int,
                         help="Run prediction on validation set every so many steps."
@@ -309,10 +309,17 @@ def main():
     #                           "--pretrained_dir", "/home/baha/Downloads/ViT-B_16.npz",
     #                           "--fp16_opt_level", "O2"])
 
-    args = parser.parse_args(["--name", "solar", "--dataset", "InfraredSolarModules", "--model_type", "R50-ViT-B_16",
+    args = parser.parse_args(["--name", "cifar10-100_500", "--dataset", "cifar100", "--model_type", "R50-ViT-B_16",
                               "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
                               "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
                               "--fp16_opt_level", "O2"])
+
+
+#----- solarData:
+    # args = parser.parse_args(["--name", "solar", "--dataset", "InfraredSolarModules", "--model_type", "R50-ViT-B_16",
+    #                           "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
+    #                           "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
+    #                           "--fp16_opt_level", "O2"])
 
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1:
