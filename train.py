@@ -110,16 +110,21 @@ def valid(args, model, writer, test_loader, global_step):
                           dynamic_ncols=True,
                           disable=args.local_rank not in [-1, 0])
     loss_fct = torch.nn.CrossEntropyLoss()
+
+    use_cuda = torch.cuda.is_available()
+    device = torch.device("cuda:0" if use_cuda else "cpu")
+    all_logits = torch.tensor([], device=device)
+
     for step, batch in enumerate(epoch_iterator):
         batch = tuple(t.to(args.device) for t in batch)
         x, y = batch
         with torch.no_grad():
             logits = model(x)[0]
-
             eval_loss = loss_fct(logits, y)
             eval_losses.update(eval_loss.item())
 
             preds = torch.argmax(logits, dim=-1)
+            all_logits = torch.cat([all_logits, logits], dim=0)
 
         if len(all_preds) == 0:
             all_preds.append(preds.detach().cpu().numpy())
@@ -136,7 +141,8 @@ def valid(args, model, writer, test_loader, global_step):
     all_preds, all_label = all_preds[0], all_label[0]
     accuracy = simple_accuracy(all_preds, all_label)
 
-    c = (preds == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
+    _, predicted = torch.max(all_logits.data, 1)
+    c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
     multiclass_correct = list(0. for i in range(100))
     multiclass_total = list(0. for i in range(100))
     all_labels = test_loader.dataset.targets
