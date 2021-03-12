@@ -137,8 +137,8 @@ def valid(args, model, writer, test_loader, global_step):
     accuracy = simple_accuracy(all_preds, all_label)
 
     c = (preds == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
-    multiclass_correct = list(0. for i in range(12))
-    multiclass_total = list(0. for i in range(12))
+    multiclass_correct = list(0. for i in range(100))
+    multiclass_total = list(0. for i in range(100))
     all_labels = test_loader.dataset.targets
     for i in range(len(all_labels)):
         label = all_labels[i]
