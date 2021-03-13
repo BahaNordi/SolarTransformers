@@ -141,18 +141,18 @@ def valid(args, model, writer, test_loader, global_step):
     all_preds, all_label = all_preds[0], all_label[0]
     accuracy = simple_accuracy(all_preds, all_label)
 
-    _, predicted = torch.max(all_logits.data.detach().cpu(), 1)
-    c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
-    multiclass_correct = list(0. for i in range(len(test_loader.dataset.classes)))
-    multiclass_total = list(0. for i in range(len(test_loader.dataset.classes)))
-    all_labels = test_loader.dataset.targets
-    for i in range(len(all_labels)):
-        label = all_labels[i]
-        multiclass_correct[label] += c[i].item()
-        multiclass_total[label] += 1
-
-    for i, class_id in enumerate(test_loader.dataset.classes):
-        print('Accuracy of class %s:, %2d %%' % (class_id, 100 * multiclass_correct[i] / multiclass_total[i]))
+    # _, predicted = torch.max(all_logits.data.detach().cpu(), 1)
+    # c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
+    # multiclass_correct = list(0. for i in range(len(test_loader.dataset.classes)))
+    # multiclass_total = list(0. for i in range(len(test_loader.dataset.classes)))
+    # all_labels = test_loader.dataset.targets
+    # for i in range(len(all_labels)):
+    #     label = all_labels[i]
+    #     multiclass_correct[label] += c[i].item()
+    #     multiclass_total[label] += 1
+    #
+    # for i, class_id in enumerate(test_loader.dataset.classes):
+    #     print('Accuracy of class %s:, %2d %%' % (class_id, 100 * multiclass_correct[i] / multiclass_total[i]))
 
     logger.info("\n")
     logger.info("Validation Results")
@@ -286,7 +286,7 @@ def main():
 
     parser.add_argument("--img_size", default=224, type=int,
                         help="Resolution size")
-    parser.add_argument("--train_batch_size", default=32, type=int,
+    parser.add_argument("--train_batch_size", default=4, type=int,
                         help="Total batch size for training.")
     parser.add_argument("--eval_batch_size", default=128, type=int,
                         help="Total batch size for eval.")
@@ -324,17 +324,17 @@ def main():
                              "Positive power of 2: static loss scaling value.\n")
 
     # args = parser.parse_args()
-    # args = parser.parse_args(["--name", "cifar10-100_500", "--dataset", "cifar100", "--model_type", "R50-ViT-B_16",
-    #                           "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
-    #                           "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
-    #                           "--fp16_opt_level", "O2"])
-
-
-# ----- solarData:
-    args = parser.parse_args(["--name", "solar", "--dataset", "InfraredSolarModules", "--model_type", "R50-ViT-B_16",
+    args = parser.parse_args(["--name", "cifar10-100_500", "--dataset", "cifar100", "--model_type", "R50-ViT-B_16",
                               "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
                               "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
                               "--fp16_opt_level", "O2"])
+
+
+# ----- solarData:
+#     args = parser.parse_args(["--name", "solar", "--dataset", "InfraredSolarModules", "--model_type", "R50-ViT-B_16",
+#                               "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
+#                               "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
+#                               "--fp16_opt_level", "O2"])
 
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1:
