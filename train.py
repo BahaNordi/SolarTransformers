@@ -286,11 +286,11 @@ def main():
 
     parser.add_argument("--img_size", default=224, type=int,
                         help="Resolution size")
-    parser.add_argument("--train_batch_size", default=4, type=int,
+    parser.add_argument("--train_batch_size", default=32, type=int,
                         help="Total batch size for training.")
     parser.add_argument("--eval_batch_size", default=128, type=int,
                         help="Total batch size for eval.")
-    parser.add_argument("--eval_every", default=120, type=int,
+    parser.add_argument("--eval_every", default=130, type=int,
                         help="Run prediction on validation set every so many steps."
                              "Will always run one evaluation at the end of training.")
 
