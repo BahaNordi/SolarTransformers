@@ -82,13 +82,14 @@ def get_loader(args):
 
     transform_train = transforms.Compose([
 
-        transforms.RandomResizedCrop((args.img_size, args.img_size), scale=(0.90, 1.0)),
-        transforms.RandomApply(torch.nn.ModuleList([transforms.ColorJitter(brightness=0.05, contrast=0.05,
-                                                                           saturation=0.1, hue=0.05)]), p=0.3),
+        transforms.RandomResizedCrop((args.img_size, args.img_size), scale=(0.75,  1.0), ratio=(0.1, 1.3333333333333333)),
+        transforms.RandomApply(torch.nn.ModuleList([transforms.ColorJitter(brightness=(0.05, 1.5), contrast=(0.05, 1.5),
+                                                                           saturation=(0.1, 1.5), hue=(-0.05, 0.5))]),
+                               p=0.3),
         transforms.RandomApply(torch.nn.ModuleList([transforms.GaussianBlur([3], sigma=(0.1, 2.0))]), p=0.3),
 
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
+        transforms.Normalize(mean=[0.6512266, 0.6512266, 0.6512266], std=[0.15099779, 0.15099779, 0.15099779]),
     ])
     transform_test = transforms.Compose([
         transforms.Resize((args.img_size, args.img_size)),
