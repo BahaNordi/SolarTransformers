@@ -89,12 +89,12 @@ def get_loader(args):
         transforms.RandomApply(torch.nn.ModuleList([transforms.GaussianBlur([3], sigma=(0.1, 2.0))]), p=0.3),
 
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.6512266, 0.6512266, 0.6512266], std=[0.15099779, 0.15099779, 0.15099779]),
+        transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
     ])
     transform_test = transforms.Compose([
         transforms.Resize((args.img_size, args.img_size)),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.6512266, 0.6512266, 0.6512266], std=[0.15099779, 0.15099779, 0.15099779]),
+        transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
     ])
 
     if args.dataset == "cifar10":
