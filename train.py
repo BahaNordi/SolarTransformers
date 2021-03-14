@@ -324,17 +324,17 @@ def main():
                              "Positive power of 2: static loss scaling value.\n")
 
     # args = parser.parse_args()
-    args = parser.parse_args(["--name", "cifar10-100_500", "--dataset", "cifar100", "--model_type", "R50-ViT-B_16",
-                              "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
-                              "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
-                              "--fp16_opt_level", "O2"])
+    # args = parser.parse_args(["--name", "cifar10-100_500", "--dataset", "cifar100", "--model_type", "R50-ViT-B_16",
+    #                           "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
+    #                           "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
+    #                           "--fp16_opt_level", "O2"])
 
 
 # ----- solarData:
-#     args = parser.parse_args(["--name", "solar", "--dataset", "InfraredSolarModules", "--model_type", "R50-ViT-B_16",
-#                               "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
-#                               "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
-#                               "--fp16_opt_level", "O2"])
+    args = parser.parse_args(["--name", "solar", "--dataset", "InfraredSolarModules", "--model_type", "R50-ViT-B_16",
+                              "--pretrained_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_models/R50+ViT-B_16.npz",
+                              "--output_dir", "/content/gdrive/MyDrive/Colab_Notebooks/logs/solar/vit_output",
+                              "--fp16_opt_level", "O2"])
 
     # Setup CUDA, GPU & distributed training
     if args.local_rank == -1:
