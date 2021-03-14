@@ -141,18 +141,18 @@ def valid(args, model, writer, test_loader, global_step):
     all_preds, all_label = all_preds[0], all_label[0]
     accuracy = simple_accuracy(all_preds, all_label)
 
-    # _, predicted = torch.max(all_logits.data.detach().cpu(), 1)
-    # c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
-    # multiclass_correct = list(0. for i in range(len(test_loader.dataset.classes)))
-    # multiclass_total = list(0. for i in range(len(test_loader.dataset.classes)))
-    # all_labels = test_loader.dataset.targets
-    # for i in range(len(all_labels)):
-    #     label = all_labels[i]
-    #     multiclass_correct[label] += c[i].item()
-    #     multiclass_total[label] += 1
-    #
-    # for i, class_id in enumerate(test_loader.dataset.classes):
-    #     print('Accuracy of class %s:, %2d %%' % (class_id, 100 * multiclass_correct[i] / multiclass_total[i]))
+    _, predicted = torch.max(all_logits.data.detach().cpu(), 1)
+    c = (predicted == torch.tensor(all_label[:all_preds.shape[0]])).squeeze()
+    multiclass_correct = list(0. for i in range(len(test_loader.dataset.classes)))
+    multiclass_total = list(0. for i in range(len(test_loader.dataset.classes)))
+    all_labels = test_loader.dataset.targets
+    for i in range(len(all_labels)):
+        label = all_labels[i]
+        multiclass_correct[label] += c[i].item()
+        multiclass_total[label] += 1
+
+    for i, class_id in enumerate(test_loader.dataset.classes):
+        print('Accuracy of class %s:, %2d %%' % (class_id, 100 * multiclass_correct[i] / multiclass_total[i]))
 
     logger.info("\n")
     logger.info("Validation Results")
