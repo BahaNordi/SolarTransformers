@@ -94,7 +94,7 @@ def get_loader(args):
     transform_test = transforms.Compose([
         transforms.Resize((args.img_size, args.img_size)),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
+        transforms.Normalize(mean=[0.6512266, 0.6512266, 0.6512266], std=[0.15099779, 0.15099779, 0.15099779]),
     ])
 
     if args.dataset == "cifar10":
