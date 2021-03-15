@@ -82,7 +82,7 @@ def get_loader(args):
 
     transform_train = transforms.Compose([
 
-        transforms.RandomResizedCrop((args.img_size, args.img_size), scale=(0.75,  1.0), ratio=(0.1, 1.3333333333333333)),
+        transforms.RandomResizedCrop((args.img_size, args.img_size), scale=(0.55,  1.0), ratio=(0.1, 1.3333333333333333)),
         transforms.RandomApply(torch.nn.ModuleList([transforms.ColorJitter(brightness=(0.05, 1.5), contrast=(0.05, 1.5),
                                                                            saturation=(0.1, 1.5), hue=(-0.05, 0.5))]),
                                p=0.3),
