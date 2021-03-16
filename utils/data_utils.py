@@ -84,11 +84,11 @@ def get_loader(args):
 
         transforms.RandomHorizontalFlip(p=0.5),
         transforms.RandomVerticalFlip(p=0.5),
-        transforms.RandomResizedCrop((args.img_size, args.img_size), scale=(0.80,  1.0), ratio=(0.1, 1.3333333333333333)),
-        # transforms.RandomApply(torch.nn.ModuleList([transforms.ColorJitter(brightness=(0.05, 1.5), contrast=(0.05, 1.5),
-        #                                                                    saturation=(0.1, 1.5), hue=(-0.05, 0.5))]),
-        #                        p=0.3),
-        # transforms.RandomApply(torch.nn.ModuleList([transforms.GaussianBlur([3], sigma=(0.1, 2.0))]), p=0.3),
+        transforms.RandomResizedCrop((args.img_size, args.img_size), scale=(0.85,  1.0), ratio=(0.1, 1.3333333333333333)),
+        transforms.RandomApply(torch.nn.ModuleList([transforms.ColorJitter(brightness=(0.05, 1.5), contrast=(0.05, 1.5),
+                                                                           saturation=(0.1, 1.5), hue=(-0.05, 0.5))]),
+                               p=0.3),
+        transforms.RandomApply(torch.nn.ModuleList([transforms.GaussianBlur([3], sigma=(0.1, 2.0))]), p=0.3),
 
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
